@@ -149,7 +149,7 @@ module RubyXL
 
     def modify_alignment(style_index, &block)
       xf = cell_xfs[style_index].dup
-      xf.alignment = RubyXL::Alignment.new
+      xf.alignment = xf.alignment.nil? ? RubyXL::Alignment.new : xf.alignment.dup
       xf.apply_alignment = true
       yield(xf.alignment)
       register_new_xf(xf, style_index)
